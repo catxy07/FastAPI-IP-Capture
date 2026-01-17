@@ -6,10 +6,14 @@ class Location(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(String(50), nullable=False, index=True)
-
     lat = Column(Float, nullable=False)
     lng = Column(Float, nullable=False)
+    ip_address = Column(String(45), nullable=True)
+    time = Column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"))
 
-    ip_address = Column(String(45), nullable=True)  # supports IPv4 + IPv6
+class Visitor(Base):
+    __tablename__ = "visitors"
 
+    id = Column(Integer, primary_key=True, index=True)
+    ip_address = Column(String(45), nullable=False, index=True)
     time = Column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"))
